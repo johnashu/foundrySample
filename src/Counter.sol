@@ -12,11 +12,11 @@ contract Counter {
         ++number;
     }
 
-    function isTrue() public pure returns(bool){
+    function isTrue() public pure returns (bool) {
         return true;
     }
 
-    function addOne(uint x) external pure returns (uint){
+    function addOne(uint256 x) external pure returns (uint256) {
         return ++x;
     }
 }
