@@ -9,6 +9,14 @@ contract Counter {
     }
 
     function increment() public {
-        number++;
+        ++number;
+    }
+
+    function isTrue() public pure returns(bool){
+        return true;
+    }
+
+    function addOne(uint x) external pure returns (uint){
+        return ++x;
     }
 }

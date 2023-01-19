@@ -7,9 +7,12 @@ import "../src/Counter.sol";
 contract CounterTest is Test {
     Counter public counter;
 
+    address internal madeUp;
+
     function setUp() public {
         counter = new Counter();
         counter.setNumber(0);
+        madeUp = makeAddr('Maffaz');
     }
 
     function testIncrement() public {
@@ -20,5 +23,16 @@ contract CounterTest is Test {
     function testSetNumber(uint256 x) public {
         counter.setNumber(x);
         assertEq(counter.number(), x);
+    }
+
+    function testIsTrue() public {
+        emit log_string('\nHello\n\tThis is gonna be True!!\nSent by:');
+        emit log_address(msg.sender);
+        emit log_named_address('\nOr is it this made up address??', madeUp);
+        require(counter.isTrue(), "It is False!");
+    }
+
+    function testAddOne() public {
+        assertEq(3, counter.addOne(2));
     }
 }
