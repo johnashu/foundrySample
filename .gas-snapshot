@@ -1,0 +1,6 @@
+CounterTest:testAddOne() (gas: 5577)
+CounterTest:testIncrement() (gas: 28419)
+CounterTest:testIsTrue() (gas: 12301)
+CounterTest:testSetNumber(uint256) (runs: 256, μ: 27121, ~: 28443)
+FooTest:testBar() (gas: 10302)
+FooTest:testBarRevert() (gas: 10487)
