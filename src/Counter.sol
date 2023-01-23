@@ -19,4 +19,13 @@ contract Counter {
     function addOne(uint256 x) external pure returns (uint256) {
         return ++x;
     }
+
+    function addOne128(uint128 x) external pure returns (uint128) {
+        return ++x;
+    }
+
+
+    function minusOne(uint256 x) external pure returns (uint256) {
+        return --x;
+    }
 }

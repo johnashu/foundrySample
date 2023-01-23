@@ -45,16 +45,38 @@ contract CounterTest is Test {
         testNumber -= 43;
     }
 
-    function testAddOne() public {
+    function testAddOneHardCode() public {
         assertEq(counter.addOne(2), 3);
     }
 
-    function testFailAddOne(uint x) public {
+    // Passes ok using constraints
+    function testAddOneFuzzyWithVm(uint256 x) public {
+        vm.assume(x < type(uint256).max - 1);
+        assertEq(counter.addOne(x), x + 1);
+    }
+
+    // Fails with Over / Under Flow.. but < 256 runs
+    function testAddOne128(uint128 x) public {
+        assertEq(counter.addOne128(x), x + 1);
+    }
+
+    // Fails with Over / Under Flow.. > 256 runs
+    function testAddOne256(uint256 x) public {
+        assertEq(counter.addOne(x), x + 1);
+    }
+
+    // Passes no problem..
+    function testFailAddOne(uint256 x) public {
         assertEq(counter.addOne(x), x + 2);
     }
 
-    function testAddOneFuzzy(uint256 x) public {
-        vm.assume(x < type(uint256).max - 1);
-        assertEq(counter.addOne(x), x + 1);
+    // Fails with Over / Under Flow..
+    function testMinusOne(uint256 x) public {
+        assertEq(counter.minusOne(x), x - 1);
+    }
+
+    // Passes no problem..
+    function testFailMinusOne(uint x) public {
+        assertEq(counter.minusOne(x), x - 2);
     }
 }
